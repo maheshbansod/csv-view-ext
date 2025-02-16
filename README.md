@@ -27,8 +27,11 @@ Transform your CSV viewing experience with a sleek, modern interface right in yo
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/csv-view.git
-   cd csv-view
+   git clone https://github.com/maheshbansod/csv-view-ext.git
+   ```
+   Go to the project directory
+   ```bash
+   cd csv-view-ext
    ```
 
 2. **Install Dependencies**
@@ -70,7 +73,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 <div align="center">
-Made with ❤️ by [Your Name]
+Made with ❤️ by [Light](https://github.com/maheshbansod)
 
 ⭐️ Star this repo if you find it helpful!
 </div>
