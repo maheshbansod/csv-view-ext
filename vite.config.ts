@@ -8,4 +8,5 @@ export default defineConfig({
     vue(),
     tailwindcss(),
   ],
+  base: '/csv-view-ext/'
 })
