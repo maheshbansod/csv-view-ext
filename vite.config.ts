@@ -18,6 +18,11 @@ export default defineConfig(({ mode }) => {
                         ...manifestJson,
                         background: {
                             scripts: [manifestJson.background.service_worker],
+                        },
+                        browser_specific_settings: {
+                            gecko: {
+                                id: "css-view-ext@lightextensions"
+                            }
                         }
                     } : manifestJson;
                     fs.writeFile(`${OUT_DIR}/manifest.json`, JSON.stringify(finalManifest), (err) => {

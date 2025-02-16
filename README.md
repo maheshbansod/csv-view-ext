@@ -22,32 +22,25 @@ Transform your CSV viewing experience with a sleek, modern interface right in yo
 
 ## 🚀 Quick Start
 
+### Requirements
+
+- pnpm
+- node version that supports vite 6
+
 ### Installation
 
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/maheshbansod/csv-view-ext.git
-   ```
-   Go to the project directory
-   ```bash
-   cd csv-view-ext
-   ```
+The script `scripts/build.sh` will install and build the extension.
 
-2. **Install Dependencies**
-   ```bash
-   pnpm install
-   ```
+Just run
+```sh
+sh scripts/build.sh firefox
+```
+or
+```sh
+sh scripts/build.sh chrome
+```
 
-3. **Build the Extension**
-   ```bash
-   pnpm build
-   ```
-   or for firefox:
-   ```bash
-   pnpm build --mode=firefox
-   ```
-
-4. The extension files will be saved in the `./dist/` folder. Load the extension in your browser.
+The extension files will be saved in the `./dist/` folder. Load the extension in your browser.
 
 
 ### Development
