@@ -1,4 +1,4 @@
-# 📊 CSV Viewer Chrome Extension
+# 📊 CSV Viewer Extension
 
 <div align="center">
 
@@ -7,7 +7,6 @@
 [![Vue.js](https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)](https://vuejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white)](https://chrome.google.com/webstore)
 
 Transform your CSV viewing experience with a sleek, modern interface right in your browser! 🚀
 
@@ -43,12 +42,13 @@ Transform your CSV viewing experience with a sleek, modern interface right in yo
    ```bash
    pnpm build
    ```
+   or for firefox:
+   ```bash
+   pnpm build --mode=firefox
+   ```
 
-4. **Load in Chrome**
-   1. Open Chrome and navigate to `chrome://extensions/`
-   2. Enable "Developer mode" in the top-right corner
-   3. Click "Load unpacked"
-   4. Select the `dist` directory from this project
+4. The extension files will be saved in the `./dist/` folder. Load the extension in your browser.
+
 
 ### Development
 
