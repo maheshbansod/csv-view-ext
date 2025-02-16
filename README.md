@@ -73,7 +73,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 <div align="center">
-Made with ❤️ by [Light](https://github.com/maheshbansod)
+Made with ❤️ by <a href="https://github.com/maheshbansod">Light</a>
 
 ⭐️ Star this repo if you find it helpful!
 </div>
