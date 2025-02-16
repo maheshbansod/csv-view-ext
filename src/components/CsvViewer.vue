@@ -39,6 +39,12 @@
         <thead class="bg-gray-50">
           <tr>
             <th
+              scope="col"
+              class="w-16 px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              #
+            </th>
+            <th
               v-for="(header, index) in headers"
               :key="index"
               scope="col"
@@ -81,6 +87,9 @@
             :key="rowIndex"
             class="hover:bg-gray-50"
           >
+            <td class="w-16 px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
+              {{ (currentPage - 1) * itemsPerPage + rowIndex + 1 }}
+            </td>
             <td
               v-for="(cell, cellIndex) in row"
               :key="cellIndex"
@@ -107,39 +116,52 @@
       </table>
     </div>
 
-    <!-- Pagination -->
-    <div v-if="totalPages > 1" class="flex items-center justify-center space-x-2 mt-4 mb-4">
-      <button
-        @click="prevPage"
-        :disabled="currentPage === 1"
-        class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300"
-      >
-        Previous
-      </button>
+    <!-- Row Count and Pagination -->
+    <div class="flex flex-col items-center mt-4 mb-4 space-y-2">
+      <div class="text-sm text-gray-600">
+        Total rows: {{ filteredAndSortedData.length }}
+      </div>
       
-      <div class="flex items-center space-x-1">
+      <div v-if="totalPages > 1" class="flex items-center justify-center space-x-2">
         <button
-          v-for="page in displayedPages"
-          :key="page"
-          @click="goToPage(page)"
-          :class="[
-            'px-3 py-2 rounded-lg',
-            currentPage === page
-              ? 'bg-blue-600 text-white'
-              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-          ]"
+          @click="prevPage"
+          :disabled="currentPage === 1"
+          class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300"
         >
-          {{ page }}
+          Previous
+        </button>
+        
+        <div class="flex items-center space-x-1">
+          <template v-for="page in displayedPages" :key="page">
+            <span
+              v-if="page === -1"
+              class="px-3 py-2 text-gray-700"
+            >
+              ...
+            </span>
+            <button
+              v-else
+              @click="goToPage(page)"
+              :class="[
+                'px-3 py-2 rounded-lg',
+                currentPage === page
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              ]"
+            >
+              {{ page }}
+            </button>
+          </template>
+        </div>
+
+        <button
+          @click="nextPage"
+          :disabled="currentPage === totalPages"
+          class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300"
+        >
+          Next
         </button>
       </div>
-
-      <button
-        @click="nextPage"
-        :disabled="currentPage === totalPages"
-        class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300"
-      >
-        Next
-      </button>
     </div>
 
     <!-- Empty State -->
