@@ -2,6 +2,7 @@
 import CsvViewer from './components/CsvViewer.vue';
 import CsvUrlInput from './components/CsvUrlInput.vue';
 import { ref, onMounted, watch } from 'vue';
+import { extensionUrl } from './consts';
 
 const currentUrl = ref(window.location.hash.slice(1));
 const csvData = ref('');
@@ -28,6 +29,7 @@ const loadCsv = async (url: string) => {
     csvData.value = data;
   } catch (error) {
     console.error('Failed to load CSV:', error);
+    csvData.value = '';
   } finally {
     isLoading.value = false;
   }
@@ -62,14 +64,25 @@ onMounted(() => {
         <CsvUrlInput v-if="!currentUrl" />
         <CsvViewer v-else-if="csvData" :csvData="csvData" :csvUrl="currentUrl" />
         <div v-else class="flex items-center justify-center min-h-screen">
-          <div class="text-center p-6 bg-white rounded-lg shadow-lg">
+          <div class="text-center p-6 bg-white rounded-lg shadow-lg max-w-lg">
             <div class="text-red-500 mb-2">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
             <h3 class="text-lg font-medium text-gray-900">Failed to load CSV</h3>
-            <p class="mt-2 text-sm text-gray-500">There was an error loading the CSV file. Please check the URL and try again.</p>
+            <p class="mt-2 text-sm text-gray-500">
+              Unable to load the CSV file. This might be due to CORS restrictions or other access issues.
+              Try our Chrome Extension - it might help you view this file!
+              <a 
+                :href="extensionUrl"
+                class="block mt-2 text-blue-600 hover:text-blue-800 font-medium"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Get the Chrome Extension →
+              </a>
+            </p>
             <button 
               @click="currentUrl = ''" 
               class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
