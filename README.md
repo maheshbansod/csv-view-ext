@@ -20,7 +20,6 @@ Transform your CSV viewing experience with a sleek, modern interface right in yo
 - 🎨 **Modern UI** - Clean, intuitive interface built with Vue 3 and Tailwind CSS
 - 🔍 **Smart Formatting** - Automatic data type detection and formatting
 - ⚡ **Performance Optimized** - Handles large CSV files with ease
-- 🌙 **Dark Mode Support** - Easy on the eyes, day or night
 
 ## 🚀 Quick Start
 
