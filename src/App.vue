@@ -50,7 +50,12 @@ onMounted(() => {
 
     <footer class="py-4 px-6 text-center text-sm bg-white border-t border-gray-200 shadow-sm">
       <p class="text-gray-700">
-        Built with ❤️ by 
+        Built with 
+        <a href="https://vuejs.org/" 
+           class="text-red-500 hover:text-red-600 transition-colors"
+           target="_blank" 
+           rel="noopener noreferrer">❤️</a> 
+        by 
         <a href="https://maheshbansod.com" 
            class="font-medium text-blue-600 hover:text-blue-800 transition-colors" 
            target="_blank" 
