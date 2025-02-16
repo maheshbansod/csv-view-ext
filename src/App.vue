@@ -7,6 +7,10 @@ const csvData = ref('');
 const isLoading = ref(true);
 
 onMounted(() => {
+  // Extract filename from URL and set page title
+  const filename = decodeURIComponent(csvUrl.split('/').pop() || 'CSV Viewer');
+  document.title = filename;
+
   fetch(csvUrl)
     .then(response => response.text())
     .then(data => {
