@@ -2,14 +2,34 @@
   <div class="w-full bg-white shadow-lg rounded-lg overflow-hidden">
     <!-- Search Bar -->
     <div class="p-4 border-b border-gray-200 bg-gray-50">
-      <div class="relative">
-        <input
-          v-model="searchQuery"
-          type="text"
-          placeholder="Search in CSV..."
-          class="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-        />
-        <MagnifyingGlassIcon class="h-5 w-5 text-gray-400 absolute right-3 top-2.5" />
+      <div class="flex items-center justify-between">
+        <div class="relative flex-1 mr-4">
+          <input
+            v-model="searchQuery"
+            type="text"
+            placeholder="Search in CSV..."
+            class="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+          <MagnifyingGlassIcon class="h-5 w-5 text-gray-400 absolute right-3 top-2.5" />
+        </div>
+        <div class="flex space-x-2">
+          <button
+            v-if="props.csvUrl"
+            @click="copyUrl"
+            class="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+            title="Copy CSV URL"
+          >
+            <LinkIcon class="h-5 w-5 mr-2" />
+            Copy URL
+          </button>
+          <button
+            @click="downloadCurrentView"
+            class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            <ArrowDownTrayIcon class="h-5 w-5 mr-2" />
+            Download CSV
+          </button>
+        </div>
       </div>
     </div>
 
@@ -45,13 +65,19 @@
                     ]"
                   />
                 </div>
+                <XMarkIcon
+                  v-if="sortColumn === index"
+                  @click.stop="clearSort"
+                  class="w-4 h-4 text-gray-400 hover:text-red-500 cursor-pointer"
+                  title="Clear sort"
+                />
               </div>
             </th>
           </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
           <tr
-            v-for="(row, rowIndex) in filteredAndSortedData"
+            v-for="(row, rowIndex) in paginatedData"
             :key="rowIndex"
             class="hover:bg-gray-50"
           >
@@ -81,9 +107,44 @@
       </table>
     </div>
 
+    <!-- Pagination -->
+    <div v-if="totalPages > 1" class="flex items-center justify-center space-x-2 mt-4 mb-4">
+      <button
+        @click="prevPage"
+        :disabled="currentPage === 1"
+        class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300"
+      >
+        Previous
+      </button>
+      
+      <div class="flex items-center space-x-1">
+        <button
+          v-for="page in displayedPages"
+          :key="page"
+          @click="goToPage(page)"
+          :class="[
+            'px-3 py-2 rounded-lg',
+            currentPage === page
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+          ]"
+        >
+          {{ page }}
+        </button>
+      </div>
+
+      <button
+        @click="nextPage"
+        :disabled="currentPage === totalPages"
+        class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300"
+      >
+        Next
+      </button>
+    </div>
+
     <!-- Empty State -->
     <div
-      v-if="filteredAndSortedData.length === 0"
+      v-if="paginatedData.length === 0"
       class="text-center py-12 px-4 bg-gray-50"
     >
       <DocumentIcon class="mx-auto h-12 w-12 text-gray-400" />
@@ -163,6 +224,9 @@ import {
   ChevronDownIcon,
   DocumentIcon,
   DocumentDuplicateIcon,
+  XMarkIcon,
+  ArrowDownTrayIcon,
+  LinkIcon,
 } from '@heroicons/vue/24/outline'
 import {
   Dialog,
@@ -174,6 +238,7 @@ import {
 
 interface Props {
   csvData: string
+  csvUrl?: string
 }
 
 const props = defineProps<Props>()
@@ -186,6 +251,10 @@ const sortColumn = ref<number | null>(null)
 const sortDirection = ref<'asc' | 'desc'>('asc')
 const isModalOpen = ref(false)
 const selectedCellContent = ref('')
+
+// Pagination state
+const currentPage = ref(1)
+const itemsPerPage = ref(50)
 
 // Parse CSV data
 watch(
@@ -213,6 +282,11 @@ const sortByColumn = (columnIndex: number) => {
     sortColumn.value = columnIndex
     sortDirection.value = 'asc'
   }
+}
+
+const clearSort = () => {
+  sortColumn.value = null
+  sortDirection.value = 'asc'
 }
 
 // Computed properties for filtered and sorted data
@@ -251,6 +325,74 @@ const filteredAndSortedData = computed(() => {
   return result
 })
 
+// Pagination computed properties
+const totalPages = computed(() => Math.ceil(filteredAndSortedData.value.length / itemsPerPage.value))
+const paginatedData = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage.value
+  const end = start + itemsPerPage.value
+  return filteredAndSortedData.value.slice(start, end)
+})
+
+// Add displayed pages computation
+const displayedPages = computed(() => {
+  const total = totalPages.value
+  const current = currentPage.value
+  const pages: number[] = []
+  
+  if (total <= 7) {
+    // Show all pages if 7 or fewer
+    for (let i = 1; i <= total; i++) {
+      pages.push(i)
+    }
+  } else {
+    // Always show first page
+    pages.push(1)
+    
+    if (current > 3) {
+      pages.push(-1) // Separator
+    }
+    
+    // Show pages around current page
+    for (let i = Math.max(2, current - 1); i <= Math.min(total - 1, current + 1); i++) {
+      pages.push(i)
+    }
+    
+    if (current < total - 2) {
+      pages.push(-1) // Separator
+    }
+    
+    // Always show last page
+    pages.push(total)
+  }
+  
+  return pages
+})
+
+// Pagination methods
+const nextPage = () => {
+  if (currentPage.value < totalPages.value) {
+    currentPage.value++
+  }
+}
+
+const prevPage = () => {
+  if (currentPage.value > 1) {
+    currentPage.value--
+  }
+}
+
+//@ts-ignore
+const goToPage = (page: number) => {
+  if (page >= 1 && page <= totalPages.value) {
+    currentPage.value = page
+  }
+}
+
+// Reset pagination when search query changes
+watch(searchQuery, () => {
+  currentPage.value = 1
+})
+
 // Modal functions
 const openModal = (content: string) => {
   selectedCellContent.value = content
@@ -267,6 +409,42 @@ const copyToClipboard = async (content: string) => {
     await navigator.clipboard.writeText(content)
   } catch (err) {
     console.error('Failed to copy text: ', err)
+  }
+}
+
+// Download functionality
+const downloadCurrentView = () => {
+  const dataToDownload = [headers.value, ...filteredAndSortedData.value]
+  const csv = Papa.unparse(dataToDownload)
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
+  const link = document.createElement('a')
+  const url = URL.createObjectURL(blob)
+  link.setAttribute('href', url)
+  
+  // Get filename from URL or use default
+  let filename = 'exported_data.csv'
+  if (props.csvUrl) {
+    const urlParts = props.csvUrl.split('/')
+    const lastPart = urlParts[urlParts.length - 1]
+    if (lastPart.includes('.csv')) {
+      filename = lastPart
+    } else {
+      filename = lastPart + '.csv'
+    }
+  }
+  
+  link.setAttribute('download', filename)
+  link.style.visibility = 'hidden'
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+  URL.revokeObjectURL(url) // Clean up the URL object
+}
+
+// Copy URL functionality
+const copyUrl = async () => {
+  if (props.csvUrl) {
+    await navigator.clipboard.writeText(props.csvUrl)
   }
 }
 </script>

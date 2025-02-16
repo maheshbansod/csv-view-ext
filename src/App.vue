@@ -13,7 +13,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <CsvViewer v-if="csvData" :csvData="csvData" />
+  <CsvViewer v-if="csvData" :csvData="csvData" :csvUrl="csvUrl" />
 </template>
 
 <style scoped>
