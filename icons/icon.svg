@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="128" height="128" rx="24" fill="#4F46E5"/>
+    
+    <!-- CSV File Shape -->
+    <path d="M88 32H48C42.4772 32 38 36.4772 38 42V86C38 91.5228 42.4772 96 48 96H88C93.5228 96 98 91.5228 98 86V42C98 36.4772 93.5228 32 88 32Z" fill="white"/>
+    
+    <!-- Grid Lines -->
+    <path d="M38 52H98" stroke="#4F46E5" stroke-width="2"/>
+    <path d="M38 68H98" stroke="#4F46E5" stroke-width="2"/>
+    <path d="M38 84H98" stroke="#4F46E5" stroke-width="2"/>
+    <path d="M58 32V96" stroke="#4F46E5" stroke-width="2"/>
+    <path d="M78 32V96" stroke="#4F46E5" stroke-width="2"/>
+    
+    <!-- CSV Text -->
+    <text x="64" y="46" font-family="Arial, sans-serif" font-size="12" fill="#4F46E5" text-anchor="middle" font-weight="bold">CSV</text>
+    
+    <!-- Data Dots -->
+    <circle cx="48" cy="60" r="3" fill="#4F46E5"/>
+    <circle cx="68" cy="60" r="3" fill="#4F46E5"/>
+    <circle cx="88" cy="60" r="3" fill="#4F46E5"/>
+    <circle cx="48" cy="76" r="3" fill="#4F46E5"/>
+    <circle cx="68" cy="76" r="3" fill="#4F46E5"/>
+    <circle cx="88" cy="76" r="3" fill="#4F46E5"/>
+</svg> 
