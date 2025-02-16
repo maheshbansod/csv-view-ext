@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "CSV Viewer",
+  "description": "View CSV files directly in the browser with a beautiful table interface",
+  "version": "1.0",
+  "icons": {
+    "16": "icons/icon.png",
+    "32": "icons/icon.png",
+    "48": "icons/icon.png",
+    "128": "icons/icon.png"
+  },
+  "permissions": [
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "/index.html",
+        "/assets/*.js",
+        "/assets/*.css"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
