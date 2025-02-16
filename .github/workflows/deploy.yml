@@ -26,7 +26,7 @@ jobs:
         run: pnpm install
 
       - name: Build project
-        run: pnpm build
+        run: pnpm build --base=/csv-view-ext/
 
       - uses: actions/upload-artifact@v4
         name: "Upload production-ready build files"

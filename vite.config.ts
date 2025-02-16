@@ -7,6 +7,5 @@ export default defineConfig({
   plugins: [
     vue(),
     tailwindcss(),
-  ],
-  base: '/csv-view-ext/'
+  ]
 })
