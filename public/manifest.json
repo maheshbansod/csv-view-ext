@@ -1,8 +1,10 @@
 {
   "manifest_version": 3,
   "name": "CSV Viewer",
-  "description": "View CSV files directly in the browser with a beautiful table interface",
+  "description": "A CSV Viewer that just works. No more downloading and opening in Excel.",
   "version": "1.0",
+  "author": "Light",
+  "homepage_url": "https://github.com/maheshbansod/csv-view-ext",
   "icons": {
     "16": "icons/icon.png",
     "32": "icons/icon.png",
