@@ -1,15 +1,20 @@
 <script setup lang="ts">
+import CsvViewer from './components/CsvViewer.vue';
+import { ref, onMounted } from 'vue';
+
 const csvUrl = window.location.hash.slice(1);
+const csvData = ref('');
+
+onMounted(() => {
+  fetch(csvUrl)
+    .then(response => response.text())
+    .then(data => csvData.value = data);
+});
 </script>
 
 <template>
-  <div class="stylalala">
-    I'll show u the csv file at {{ csvUrl }}
-  </div>
+  <CsvViewer v-if="csvData" :csvData="csvData" />
 </template>
 
 <style scoped>
-.stylalala {
-  color: red;
-}
 </style>
