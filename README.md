@@ -1,33 +1,77 @@
-# CSV Viewer
+# 📊 CSV Viewer Chrome Extension
 
-A Chrome extension that provides a clean and intuitive interface for viewing CSV files directly in your browser.
+<div align="center">
 
-## Features
+![CSV Viewer Logo](public/icons/icon.svg)
 
-- View CSV files with a modern, tabular interface
-- Easy-to-use browser extension
-- Built with Vue.js for smooth performance
+[![Vue.js](https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)](https://vuejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white)](https://chrome.google.com/webstore)
 
-## Installation
+Transform your CSV viewing experience with a sleek, modern interface right in your browser! 🚀
 
-1. Clone this repository
-2. Install dependencies:
+</div>
+
+## ✨ Features
+
+- 🎯 **Instant CSV Parsing** - Lightning-fast file processing using Papa Parse
+- 📱 **Responsive Design** - Beautiful on any screen size
+- 🎨 **Modern UI** - Clean, intuitive interface built with Vue 3 and Tailwind CSS
+- 🔍 **Smart Formatting** - Automatic data type detection and formatting
+- ⚡ **Performance Optimized** - Handles large CSV files with ease
+- 🌙 **Dark Mode Support** - Easy on the eyes, day or night
+
+## 🚀 Quick Start
+
+### Installation
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/yourusername/csv-view.git
+   cd csv-view
+   ```
+
+2. **Install Dependencies**
    ```bash
    pnpm install
    ```
-3. Build the extension:
+
+3. **Build the Extension**
    ```bash
    pnpm build
    ```
-4. Load the extension in Chrome:
-   - Go to `chrome://extensions/`
-   - Enable "Developer mode"
-   - Click "Load unpacked"
-   - Select the `dist` directory from this project
 
-## Development
+4. **Load in Chrome**
+   1. Open Chrome and navigate to `chrome://extensions/`
+   2. Enable "Developer mode" in the top-right corner
+   3. Click "Load unpacked"
+   4. Select the `dist` directory from this project
 
-Run the development server:
+### Development
+
+Start the development server:
 ```bash
 pnpm dev
 ```
+
+## 🛠️ Tech Stack
+
+- **Frontend Framework**: Vue.js 3
+- **Styling**: Tailwind CSS
+- **Language**: TypeScript
+- **Build Tool**: Vite
+- **CSV Parsing**: Papa Parse
+- **UI Components**: Headless UI
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+Made with ❤️ by [Your Name]
+
+⭐️ Star this repo if you find it helpful!
+</div>
