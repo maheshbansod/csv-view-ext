@@ -195,7 +195,7 @@ const handleSubmit = () => {
 
       <!-- Install CTA -->
       <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-8 text-center text-white">
-        <h3 class="text-2xl font-bold mb-4" id="install-heading">Get the Full Experience</h3>
+        <h3 class="text-2xl font-bold mb-4" id="install">Get the Full Experience</h3>
         <p class="text-lg mb-6">
           Install our extension to unlock unlimited CSV viewing capabilities
         </p>
@@ -207,7 +207,7 @@ const handleSubmit = () => {
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
           </svg>
-          Install for Chrome
+          Install for Chrome ⚠️ WIP
         </a>
         <a
           :href="firefoxExtensionUrl"
