@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { extensionUrl } from '../consts';
+import { chromeExtensionUrl, firefoxExtensionUrl, extensionUrl } from '../consts';
 
 const csvUrl = ref('');
 const error = ref('');
@@ -23,7 +23,7 @@ const handleSubmit = () => {
     <!-- Input Section -->
     <div class="bg-white rounded-lg shadow-lg p-6 mb-12">
       <h2 class="text-2xl font-semibold text-gray-800 mb-6">CSV Viewer</h2>
-      
+
       <!-- Warning Banner -->
       <div class="bg-amber-50 border-l-4 border-amber-500 p-4 mb-6">
         <div class="flex">
@@ -36,7 +36,7 @@ const handleSubmit = () => {
             <p class="text-sm text-amber-700">
               <strong class="font-medium">Limited Functionality:</strong> This web viewer only works with CORS-enabled URLs.
               <a :href="extensionUrl" class="font-medium underline hover:text-amber-800">
-                Use our Chrome Extension
+                Use our Browser Extension
               </a>
               for unlimited access to any CSV file!
             </p>
@@ -73,7 +73,7 @@ const handleSubmit = () => {
       <!-- Key Features Section -->
       <div class="text-center">
         <h3 class="text-2xl font-bold text-gray-900 mb-4">
-          Why Use Our Chrome Extension?
+          Why Use The Browser Extension?
         </h3>
         <p class="text-lg text-gray-600 mb-8">
           No more CORS issues, no downloads needed - just instant CSV viewing right in your browser!
@@ -168,7 +168,7 @@ const handleSubmit = () => {
             </ul>
           </div>
           <div class="pl-8">
-            <h4 class="text-xl font-semibold text-green-600 mb-4">Chrome Extension 🚀</h4>
+            <h4 class="text-xl font-semibold text-green-600 mb-4">Browser Extension 🚀</h4>
             <ul class="space-y-3 text-gray-600">
               <li class="flex items-center">
                 <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -197,19 +197,29 @@ const handleSubmit = () => {
       <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-8 text-center text-white">
         <h3 class="text-2xl font-bold mb-4">Get the Full Experience</h3>
         <p class="text-lg mb-6">
-          Install our Chrome extension to unlock unlimited CSV viewing capabilities
+          Install our extension to unlock unlimited CSV viewing capabilities
         </p>
         <a
-          :href="extensionUrl"
+          :href="chromeExtensionUrl"
           target="_blank"
           class="inline-flex items-center px-6 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
           </svg>
-          Install Extension
+          Install for Chrome
+        </a>
+        <a
+          :href="firefoxExtensionUrl"
+          target="_blank"
+          class="inline-flex items-center mx-2 px-6 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          Install for Firefox
         </a>
       </div>
     </div>
   </div>
-</template> 
+</template>

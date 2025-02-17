@@ -22,12 +22,22 @@ Transform your CSV viewing experience with a sleek, modern interface right in yo
 
 ## 🚀 Quick Start
 
-### Requirements
+#### Mozilla Firefox
+
+Available on the [Mozilla Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/csv-viewer/) store.
+
+#### Google Chrome
+
+Coming soon to the Chrome Web Store.
+
+### From source
+
+#### Requirements
 
 - pnpm
 - node version that supports vite 6
 
-### Installation
+#### Installation
 
 The script `scripts/build.sh` will install and build the extension.
 
@@ -43,7 +53,9 @@ sh scripts/build.sh chrome
 The extension files will be saved in the `./dist/` folder. Load the extension in your browser.
 
 
-### Development
+## Development
+
+See the instructions above to install from source.
 
 Start the development server:
 ```bash

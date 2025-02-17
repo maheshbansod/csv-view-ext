@@ -2,7 +2,7 @@
 import CsvViewer from './components/CsvViewer.vue';
 import CsvUrlInput from './components/CsvUrlInput.vue';
 import { ref, onMounted, watch } from 'vue';
-import { extensionUrl } from './consts';
+import { chromeExtensionUrl, firefoxExtensionUrl } from './consts';
 
 const currentUrl = ref(window.location.hash.slice(1));
 const csvData = ref('');
@@ -59,7 +59,7 @@ onMounted(() => {
           <p class="mt-4 text-gray-600">Loading CSV data...</p>
         </div>
       </div>
-      
+
       <template v-else>
         <CsvUrlInput v-if="!currentUrl" />
         <CsvViewer v-else-if="csvData" :csvData="csvData" :csvUrl="currentUrl" />
@@ -73,18 +73,26 @@ onMounted(() => {
             <h3 class="text-lg font-medium text-gray-900">Failed to load CSV</h3>
             <p class="mt-2 text-sm text-gray-500">
               Unable to load the CSV file. This might be due to CORS restrictions or other access issues.
-              Try our Chrome Extension - it might help you view this file!
-              <a 
-                :href="extensionUrl"
+              Try the browser extension - it might help you view this file!
+              <a
+                :href="chromeExtensionUrl"
                 class="block mt-2 text-blue-600 hover:text-blue-800 font-medium"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Get the Chrome Extension →
+                Chrome Extension →
+              </a>
+              <a
+                :href="firefoxExtensionUrl"
+                class="block mt-2 text-blue-600 hover:text-blue-800 font-medium"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Firefox Extension →
               </a>
             </p>
-            <button 
-              @click="currentUrl = ''" 
+            <button
+              @click="currentUrl = ''"
               class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
             >
               Go Back
@@ -96,20 +104,20 @@ onMounted(() => {
 
     <footer class="py-4 px-6 text-center text-sm bg-white border-t border-gray-200 shadow-sm">
       <p class="text-gray-700">
-        Built with 
-        <a href="https://vuejs.org/" 
+        Built with
+        <a href="https://vuejs.org/"
            class="text-red-500 hover:text-red-600 transition-colors"
-           target="_blank" 
-           rel="noopener noreferrer">❤️</a> 
-        by 
-        <a href="https://maheshbansod.com" 
-           class="font-medium text-blue-600 hover:text-blue-800 transition-colors" 
-           target="_blank" 
-           rel="noopener noreferrer">Mahesh Bansod</a> 
-        • 
-        <a href="https://github.com/maheshbansod/csv-view-ext" 
-           class="font-medium text-blue-600 hover:text-blue-800 transition-colors" 
-           target="_blank" 
+           target="_blank"
+           rel="noopener noreferrer">❤️</a>
+        by
+        <a href="https://maheshbansod.com"
+           class="font-medium text-blue-600 hover:text-blue-800 transition-colors"
+           target="_blank"
+           rel="noopener noreferrer">Mahesh Bansod</a>
+        •
+        <a href="https://github.com/maheshbansod/csv-view-ext"
+           class="font-medium text-blue-600 hover:text-blue-800 transition-colors"
+           target="_blank"
            rel="noopener noreferrer">View on GitHub</a>
       </p>
     </footer>
