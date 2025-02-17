@@ -195,7 +195,7 @@ const handleSubmit = () => {
 
       <!-- Install CTA -->
       <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-8 text-center text-white">
-        <h3 class="text-2xl font-bold mb-4">Get the Full Experience</h3>
+        <h3 class="text-2xl font-bold mb-4" id="install-heading">Get the Full Experience</h3>
         <p class="text-lg mb-6">
           Install our extension to unlock unlimited CSV viewing capabilities
         </p>
