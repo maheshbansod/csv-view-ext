@@ -9,7 +9,11 @@ const csvData = ref('');
 const isLoading = ref(true);
 
 const loadCsv = async (url: string) => {
-  if (!url) {
+  if (!url || url === 'install') {
+    if (url) {
+        // allow 'install' fragment to work normally
+        currentUrl.value = '';
+    }
     isLoading.value = false;
     csvData.value = '';
     document.title = 'CSV Viewer';
