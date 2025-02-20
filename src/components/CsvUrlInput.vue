@@ -35,7 +35,7 @@ const handleSubmit = () => {
           <div class="ml-3">
             <p class="text-sm text-amber-700">
               <strong class="font-medium">Limited Functionality:</strong> This web viewer only works with CORS-enabled URLs.
-              <a :href="extensionUrl" class="font-medium underline hover:text-amber-800">
+              <a href="#install" class="font-medium underline hover:text-amber-800">
                 Use our Browser Extension
               </a>
               for unlimited access to any CSV file!
@@ -181,6 +181,12 @@ const handleSubmit = () => {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
                 Automatic request interception
+              </li>
+              <li class="flex items-center">
+                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Open source
               </li>
               <li class="flex items-center">
                 <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
