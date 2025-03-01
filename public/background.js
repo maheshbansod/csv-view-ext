@@ -6,7 +6,7 @@ const RULES = [{
         redirect: { regexSubstitution: EXT_PAGE + "#\\0" },
     },
     condition: {
-        regexFilter: "^.+\\.csv$",
+        regexFilter: "^.+\\.csv(\\?.*)?$",
         resourceTypes: ["main_frame", "sub_frame"],
     },
 }];
