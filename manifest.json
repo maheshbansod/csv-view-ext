@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "CSV Viewer",
   "description": "A CSV Viewer that just works. No more downloading and opening in Excel.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": "Light",
   "homepage_url": "https://github.com/maheshbansod/csv-view-ext",
   "icons": {
