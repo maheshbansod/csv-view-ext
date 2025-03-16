@@ -28,7 +28,7 @@ Available on the [Mozilla Firefox Add-ons](https://addons.mozilla.org/en-US/fire
 
 #### Google Chrome
 
-Coming soon to the Chrome Web Store.
+Available on the [Chrome Web Store](https://chromewebstore.google.com/detail/csv-viewer/nkkliddllkckohhkodjcbajhnbaljlag)
 
 ### From source
 
