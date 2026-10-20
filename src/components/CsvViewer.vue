@@ -1,14 +1,14 @@
 <template>
-  <div class="w-full bg-white shadow-lg rounded-lg overflow-hidden">
+  <div class="w-full bg-surface-raised shadow-lg rounded-lg overflow-hidden">
     <!-- Search Bar -->
-    <div class="p-4 border-b border-gray-200 bg-gray-50">
+    <div class="p-4 border-b border-line bg-surface">
       <div class="flex items-center justify-between">
         <div class="relative flex-1 mr-4">
           <input
             v-model="searchQuery"
             type="text"
             placeholder="Search in CSV..."
-            class="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            class="w-full px-4 py-2 text-fg bg-surface-raised rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <MagnifyingGlassIcon class="h-5 w-5 text-gray-400 absolute right-3 top-2.5" />
         </div>
@@ -16,7 +16,7 @@
           <button
             v-if="props.csvUrl"
             @click="copyUrl"
-            class="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+            class="inline-flex items-center px-4 py-2 bg-control text-fg rounded-lg hover:bg-control-hover focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
             title="Copy CSV URL"
           >
             <LinkIcon class="h-5 w-5 mr-2" />
@@ -35,12 +35,12 @@
 
     <!-- Table -->
     <div class="overflow-x-auto">
-      <table class="min-w-full divide-y divide-gray-200">
-        <thead class="bg-gray-50">
+      <table class="min-w-full divide-y divide-line">
+        <thead class="bg-surface">
           <tr>
             <th
               scope="col"
-              class="w-16 px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              class="w-16 px-4 py-3 text-left text-xs font-medium text-muted uppercase tracking-wider"
             >
               #
             </th>
@@ -48,7 +48,7 @@
               v-for="(header, index) in headers"
               :key="index"
               scope="col"
-              class="group px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+              class="group px-6 py-3 text-left text-xs font-medium text-muted uppercase tracking-wider cursor-pointer hover:bg-hover"
               @click="sortByColumn(index)"
             >
               <div class="flex items-center space-x-1">
@@ -81,19 +81,19 @@
             </th>
           </tr>
         </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
+        <tbody class="bg-surface-raised divide-y divide-line">
           <tr
             v-for="(row, rowIndex) in paginatedData"
             :key="rowIndex"
-            class="hover:bg-gray-50"
+            class="hover:bg-hover"
           >
-            <td class="w-16 px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
+            <td class="w-16 px-4 py-4 text-sm text-muted whitespace-nowrap">
               {{ (currentPage - 1) * itemsPerPage + rowIndex + 1 }}
             </td>
             <td
               v-for="(cell, cellIndex) in row"
               :key="cellIndex"
-              class="px-6 py-4 text-sm text-gray-900 group relative"
+              class="px-6 py-4 text-sm text-fg group relative"
             >
               <div class="flex items-center space-x-2">
                 <div 
@@ -107,7 +107,7 @@
                   class="opacity-0 group-hover:opacity-100 transition-opacity"
                   title="Copy content"
                 >
-                  <DocumentDuplicateIcon class="h-4 w-4 text-gray-500 hover:text-blue-500" />
+                  <DocumentDuplicateIcon class="h-4 w-4 text-muted hover:text-blue-500" />
                 </button>
               </div>
             </td>
@@ -118,7 +118,7 @@
 
     <!-- Row Count and Pagination -->
     <div class="flex flex-col items-center mt-4 mb-4 space-y-2">
-      <div class="text-sm text-gray-600">
+      <div class="text-sm text-muted">
         Total rows: {{ filteredAndSortedData.length }}
       </div>
       
@@ -126,7 +126,7 @@
         <button
           @click="prevPage"
           :disabled="currentPage === 1"
-          class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300"
+          class="px-4 py-2 bg-control text-fg rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-control-hover"
         >
           Previous
         </button>
@@ -135,7 +135,7 @@
           <template v-for="page in displayedPages" :key="page">
             <span
               v-if="page === -1"
-              class="px-3 py-2 text-gray-700"
+              class="px-3 py-2 text-fg"
             >
               ...
             </span>
@@ -146,7 +146,7 @@
                 'px-3 py-2 rounded-lg',
                 currentPage === page
                   ? 'bg-blue-600 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  : 'bg-control text-fg hover:bg-control-hover'
               ]"
             >
               {{ page }}
@@ -157,7 +157,7 @@
         <button
           @click="nextPage"
           :disabled="currentPage === totalPages"
-          class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300"
+          class="px-4 py-2 bg-control text-fg rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-control-hover"
         >
           Next
         </button>
@@ -167,11 +167,11 @@
     <!-- Empty State -->
     <div
       v-if="paginatedData.length === 0"
-      class="text-center py-12 px-4 bg-gray-50"
+      class="text-center py-12 px-4 bg-surface"
     >
       <DocumentIcon class="mx-auto h-12 w-12 text-gray-400" />
-      <h3 class="mt-2 text-sm font-medium text-gray-900">No results found</h3>
-      <p class="mt-1 text-sm text-gray-500">
+      <h3 class="mt-2 text-sm font-medium text-fg">No results found</h3>
+      <p class="mt-1 text-sm text-muted">
         Try adjusting your search query to find what you're looking for.
       </p>
     </div>
@@ -188,7 +188,7 @@
           leave-from="opacity-100"
           leave-to="opacity-0"
         >
-          <div class="fixed inset-0 bg-black bg-opacity-25" />
+          <div class="fixed inset-0 bg-black/25 dark:bg-black/50" />
         </TransitionChild>
 
         <div class="fixed inset-0 overflow-y-auto">
@@ -202,19 +202,19 @@
               leave-from="opacity-100 scale-100"
               leave-to="opacity-0 scale-95"
             >
-              <DialogPanel class="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                <DialogTitle as="h3" class="text-lg font-medium leading-6 text-gray-900 mb-4">
+              <DialogPanel class="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-surface-raised p-6 text-left align-middle shadow-xl transition-all">
+                <DialogTitle as="h3" class="text-lg font-medium leading-6 text-fg mb-4">
                   Cell Content
                 </DialogTitle>
                 <div class="mt-2">
-                  <div class="bg-gray-50 rounded-lg p-4 relative">
-                    <pre class="text-sm text-gray-700 whitespace-pre-wrap break-words">{{ selectedCellContent }}</pre>
+                  <div class="bg-surface rounded-lg p-4 relative">
+                    <pre class="text-sm text-fg whitespace-pre-wrap break-words">{{ selectedCellContent }}</pre>
                     <button
                       @click="copyToClipboard(selectedCellContent)"
                       class="absolute top-2 right-2"
                       title="Copy content"
                     >
-                      <DocumentDuplicateIcon class="h-5 w-5 text-gray-500 hover:text-blue-500" />
+                      <DocumentDuplicateIcon class="h-5 w-5 text-muted hover:text-blue-500" />
                     </button>
                   </div>
                 </div>
@@ -222,7 +222,7 @@
                 <div class="mt-4">
                   <button
                     type="button"
-                    class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                     @click="closeModal"
                   >
                     Close
