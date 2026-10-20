@@ -3,6 +3,7 @@ import CsvViewer from './components/CsvViewer.vue';
 import CsvUrlInput from './components/CsvUrlInput.vue';
 import { ref, onMounted, watch } from 'vue';
 import { chromeExtensionUrl, firefoxExtensionUrl } from './consts';
+import ThemeToggle from './components/ThemeToggle.vue';
 
 const currentUrl = ref(window.location.hash.slice(1));
 const csvData = ref('');
@@ -56,6 +57,8 @@ onMounted(() => {
 
 <template>
   <div class="min-h-screen bg-surface flex flex-col">
+    <ThemeToggle class="absolute top-4 right-4 z-10" />
+
     <div class="flex-grow">
       <div v-if="isLoading" class="flex items-center justify-center min-h-screen">
         <div class="text-center">

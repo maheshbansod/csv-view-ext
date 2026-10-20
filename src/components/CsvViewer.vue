@@ -1,7 +1,7 @@
 <template>
   <div class="w-full bg-surface-raised shadow-lg rounded-lg overflow-hidden">
     <!-- Search Bar -->
-    <div class="p-4 border-b border-line bg-surface">
+    <div class="p-4 pr-18 border-b border-line bg-surface">
       <div class="flex items-center justify-between">
         <div class="relative flex-1 mr-4">
           <input
