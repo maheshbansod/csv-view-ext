@@ -35,7 +35,11 @@
   color-scheme: light;
 }
 
-/* Dark values, twice: once for "OS says dark, no explicit choice", once for an explicit choice */
+/*
+ * Dark values, twice: once for "OS says dark, no explicit choice", once for an explicit choice.
+ * The two lists (the @media block below and :root[data-theme=dark]) MUST be kept in sync:
+ * when you add or change a --c-* token, update both.
+ */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
     --c-surface: var(--color-gray-950);
@@ -53,6 +57,7 @@
 }
 
 :root[data-theme=dark] {
+  /* Keep in sync with the @media (prefers-color-scheme: dark) block above */
   color-scheme: dark;
   --c-surface: var(--color-gray-950);
   --c-surface-raised: var(--color-gray-900);
