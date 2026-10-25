@@ -26,6 +26,19 @@ mediaQuery.addEventListener('change', (event) => {
   if (!readStored()) theme.value = event.matches ? 'dark' : 'light'
 })
 
+window.addEventListener('storage', (event) => {
+  // key is null when storage was cleared
+  if (event.key !== STORAGE_KEY && event.key !== null) return
+  const next = readStored()
+  if (next) {
+    document.documentElement.dataset.theme = next
+    theme.value = next
+  } else {
+    delete document.documentElement.dataset.theme
+    theme.value = mediaQuery.matches ? 'dark' : 'light'
+  }
+})
+
 const toggleTheme = () => {
   theme.value = theme.value === 'dark' ? 'light' : 'dark'
   document.documentElement.dataset.theme = theme.value
