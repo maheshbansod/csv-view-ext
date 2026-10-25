@@ -9,7 +9,7 @@ const { theme, toggleTheme } = useTheme()
   <button
     type="button"
     @click="toggleTheme"
-    class="inline-flex items-center px-3 py-2 bg-control text-fg rounded-lg hover:bg-control-hover focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+    class="h-9 inline-flex items-center px-3 py-2 bg-control text-fg rounded-lg hover:bg-control-hover focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
     :title="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
     :aria-label="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
   >

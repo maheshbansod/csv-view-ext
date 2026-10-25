@@ -8,15 +8,15 @@
             v-model="searchQuery"
             type="text"
             placeholder="Search in CSV..."
-            class="w-full px-4 py-2 text-fg bg-surface-raised border border-line-strong rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            class="w-full h-9 px-4 py-2 text-fg bg-surface-raised border border-line-strong rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
-          <MagnifyingGlassIcon class="h-5 w-5 text-gray-400 absolute right-3 top-2.5" />
+          <MagnifyingGlassIcon class="h-5 w-5 text-gray-400 absolute right-3 top-2" />
         </div>
         <div class="flex space-x-2">
           <button
             v-if="props.csvUrl"
             @click="copyUrl"
-            class="inline-flex items-center px-4 py-2 bg-control text-fg rounded-lg hover:bg-control-hover focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+            class="h-9 inline-flex items-center px-4 py-2 bg-control text-fg rounded-lg hover:bg-control-hover focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
             title="Copy CSV URL"
           >
             <LinkIcon class="h-5 w-5 mr-2" />
@@ -24,7 +24,7 @@
           </button>
           <button
             @click="downloadCurrentView"
-            class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            class="h-9 inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
             <ArrowDownTrayIcon class="h-5 w-5 mr-2" />
             Download CSV
