@@ -1,8 +1,10 @@
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 type Theme = 'light' | 'dark'
+export type ThemePreference = Theme | 'system'
 
 const STORAGE_KEY = 'theme'
+const ORDER: ThemePreference[] = ['light', 'dark', 'system']
 const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
 const readStored = (): Theme | null => {
@@ -14,39 +16,44 @@ const readStored = (): Theme | null => {
   }
 }
 
-// Without a stored choice there is no data-theme attribute and the CSS follows the OS.
-const stored = readStored()
-if (stored) document.documentElement.dataset.theme = stored
+// What the user picked. 'system' means: no data-theme attribute, no stored value, the CSS follows the OS.
+const preference = ref<ThemePreference>(readStored() ?? 'system')
+const systemTheme = ref<Theme>(mediaQuery.matches ? 'dark' : 'light')
 
-// Effective theme, used to pick the toggle icon
-const theme = ref<Theme>(stored ?? (mediaQuery.matches ? 'dark' : 'light'))
+// Effective theme, derived, so OS changes need no extra bookkeeping
+const theme = computed<Theme>(() =>
+  preference.value === 'system' ? systemTheme.value : preference.value,
+)
+const nextPreference = computed(
+  () => ORDER[(ORDER.indexOf(preference.value) + 1) % ORDER.length],
+)
 
-// Keep following the OS until the user has made an explicit choice
+const applyAttribute = (value: ThemePreference) => {
+  if (value === 'system') delete document.documentElement.dataset.theme
+  else document.documentElement.dataset.theme = value
+}
+applyAttribute(preference.value)
+
 mediaQuery.addEventListener('change', (event) => {
-  if (!readStored()) theme.value = event.matches ? 'dark' : 'light'
+  systemTheme.value = event.matches ? 'dark' : 'light'
 })
 
+// Other tabs: the event fires only in tabs that did not write. key is null when storage was cleared.
 window.addEventListener('storage', (event) => {
-  // key is null when storage was cleared
   if (event.key !== STORAGE_KEY && event.key !== null) return
-  const next = readStored()
-  if (next) {
-    document.documentElement.dataset.theme = next
-    theme.value = next
-  } else {
-    delete document.documentElement.dataset.theme
-    theme.value = mediaQuery.matches ? 'dark' : 'light'
-  }
+  preference.value = readStored() ?? 'system'
+  applyAttribute(preference.value)
 })
 
-const toggleTheme = () => {
-  theme.value = theme.value === 'dark' ? 'light' : 'dark'
-  document.documentElement.dataset.theme = theme.value
+const cycleTheme = () => {
+  preference.value = nextPreference.value
+  applyAttribute(preference.value)
   try {
-    localStorage.setItem(STORAGE_KEY, theme.value)
+    if (preference.value === 'system') localStorage.removeItem(STORAGE_KEY)
+    else localStorage.setItem(STORAGE_KEY, preference.value)
   } catch {
     // storage unavailable (private mode etc.): the choice just won't persist
   }
 }
 
-export const useTheme = () => ({ theme, toggleTheme })
+export const useTheme = () => ({ theme, preference, nextPreference, cycleTheme })
