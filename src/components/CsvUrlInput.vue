@@ -21,11 +21,11 @@ const handleSubmit = () => {
 <template>
   <div class="max-w-4xl mx-auto p-6">
     <!-- Input Section -->
-    <div class="bg-white rounded-lg shadow-lg p-6 mb-12">
-      <h2 class="text-2xl font-semibold text-gray-800 mb-6">CSV Viewer</h2>
+    <div class="bg-surface-raised rounded-lg shadow-lg p-6 mb-12">
+      <h2 class="text-2xl font-semibold text-fg mb-6">CSV Viewer</h2>
 
       <!-- Warning Banner -->
-      <div class="bg-amber-50 border-l-4 border-amber-500 p-4 mb-6">
+      <div class="bg-amber-50 dark:bg-amber-950/40 border-l-4 border-amber-500 p-4 mb-6">
         <div class="flex">
           <div class="flex-shrink-0">
             <svg class="h-5 w-5 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
@@ -33,9 +33,9 @@ const handleSubmit = () => {
             </svg>
           </div>
           <div class="ml-3">
-            <p class="text-sm text-amber-700">
+            <p class="text-sm text-amber-700 dark:text-amber-300">
               <strong class="font-medium">Limited Functionality:</strong> This web viewer only works with CORS-enabled URLs.
-              <a href="#install" class="font-medium underline hover:text-amber-800">
+              <a href="#install" class="font-medium underline hover:text-amber-800 dark:hover:text-amber-200">
                 Use our Browser Extension
               </a>
               for unlimited access to any CSV file!
@@ -46,7 +46,7 @@ const handleSubmit = () => {
 
       <form @submit.prevent="handleSubmit" class="space-y-4">
         <div>
-          <label for="csvUrl" class="block text-sm font-medium text-gray-700 mb-2">
+          <label for="csvUrl" class="block text-sm font-medium text-fg mb-2">
             Enter CSV URL
           </label>
           <input
@@ -54,10 +54,10 @@ const handleSubmit = () => {
             v-model="csvUrl"
             type="text"
             placeholder="https://example.com/data.csv"
-            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            class="w-full px-4 py-2 border border-line-strong rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             :class="{ 'border-red-500': error }"
           />
-          <p v-if="error" class="mt-2 text-sm text-red-600">{{ error }}</p>
+          <p v-if="error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ error }}</p>
         </div>
         <button
           type="submit"
@@ -72,81 +72,81 @@ const handleSubmit = () => {
     <div class="space-y-16">
       <!-- Key Features Section -->
       <div class="text-center">
-        <h3 class="text-2xl font-bold text-gray-900 mb-4">
+        <h3 class="text-2xl font-bold text-fg mb-4">
           Why Use The Browser Extension?
         </h3>
-        <p class="text-lg text-gray-600 mb-8">
+        <p class="text-lg text-muted mb-8">
           No more CORS issues, no downloads needed - just instant CSV viewing right in your browser!
         </p>
         <div class="grid md:grid-cols-3 gap-8">
-          <div class="bg-white p-6 rounded-lg shadow-md">
-            <div class="text-blue-600 mb-4">
+          <div class="bg-surface-raised p-6 rounded-lg shadow-md">
+            <div class="text-link mb-4">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
               </svg>
             </div>
             <h4 class="text-xl font-semibold mb-2">Auto-Intercept</h4>
-            <p class="text-gray-600">Automatically catches CSV file requests - no manual URL entry needed</p>
+            <p class="text-muted">Automatically catches CSV file requests - no manual URL entry needed</p>
           </div>
-          <div class="bg-white p-6 rounded-lg shadow-md">
-            <div class="text-blue-600 mb-4">
+          <div class="bg-surface-raised p-6 rounded-lg shadow-md">
+            <div class="text-link mb-4">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
               </svg>
             </div>
             <h4 class="text-xl font-semibold mb-2">CORS-Free</h4>
-            <p class="text-gray-600">Access any CSV file without CORS restrictions</p>
+            <p class="text-muted">Access any CSV file without CORS restrictions</p>
           </div>
-          <div class="bg-white p-6 rounded-lg shadow-md">
-            <div class="text-blue-600 mb-4">
+          <div class="bg-surface-raised p-6 rounded-lg shadow-md">
+            <div class="text-link mb-4">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
             </div>
             <h4 class="text-xl font-semibold mb-2">100% Private</h4>
-            <p class="text-gray-600">All processing happens locally - no external servers</p>
+            <p class="text-muted">All processing happens locally - no external servers</p>
           </div>
         </div>
       </div>
 
       <!-- How It Works Section -->
-      <div class="bg-gray-50 rounded-xl p-8">
+      <div class="bg-surface rounded-xl p-8">
         <h3 class="text-2xl font-bold text-center mb-8">How It Works</h3>
         <div class="grid md:grid-cols-4 gap-6">
           <div class="text-center">
-            <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
-              <span class="text-blue-600 font-bold">1</span>
+            <div class="bg-blue-100 dark:bg-blue-900/40 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+              <span class="text-link font-bold">1</span>
             </div>
-            <p class="text-gray-600">Click any CSV link</p>
+            <p class="text-muted">Click any CSV link</p>
           </div>
           <div class="text-center">
-            <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
-              <span class="text-blue-600 font-bold">2</span>
+            <div class="bg-blue-100 dark:bg-blue-900/40 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+              <span class="text-link font-bold">2</span>
             </div>
-            <p class="text-gray-600">Extension intercepts automatically</p>
+            <p class="text-muted">Extension intercepts automatically</p>
           </div>
           <div class="text-center">
-            <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
-              <span class="text-blue-600 font-bold">3</span>
+            <div class="bg-blue-100 dark:bg-blue-900/40 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+              <span class="text-link font-bold">3</span>
             </div>
-            <p class="text-gray-600">View & analyze instantly</p>
+            <p class="text-muted">View & analyze instantly</p>
           </div>
           <div class="text-center">
-            <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
-              <span class="text-blue-600 font-bold">4</span>
+            <div class="bg-blue-100 dark:bg-blue-900/40 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+              <span class="text-link font-bold">4</span>
             </div>
-            <p class="text-gray-600">Download if needed</p>
+            <p class="text-muted">Download if needed</p>
           </div>
         </div>
       </div>
 
       <!-- Features Comparison -->
-      <div class="bg-white rounded-lg shadow-lg p-8">
+      <div class="bg-surface-raised rounded-lg shadow-lg p-8">
         <h3 class="text-2xl font-bold text-center mb-8">Extension vs. Web Viewer</h3>
         <div class="grid md:grid-cols-2 gap-8">
-          <div class="border-r border-gray-200 pr-8">
-            <h4 class="text-xl font-semibold text-blue-600 mb-4">Web Viewer (This Page)</h4>
-            <ul class="space-y-3 text-gray-600">
+          <div class="border-r border-line pr-8">
+            <h4 class="text-xl font-semibold text-link mb-4">Web Viewer (This Page)</h4>
+            <ul class="space-y-3 text-muted">
               <li class="flex items-center">
                 <svg class="h-5 w-5 text-blue-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
@@ -168,8 +168,8 @@ const handleSubmit = () => {
             </ul>
           </div>
           <div class="pl-8">
-            <h4 class="text-xl font-semibold text-green-600 mb-4">Browser Extension 🚀</h4>
-            <ul class="space-y-3 text-gray-600">
+            <h4 class="text-xl font-semibold text-green-600 dark:text-green-400 mb-4">Browser Extension 🚀</h4>
+            <ul class="space-y-3 text-muted">
               <li class="flex items-center">
                 <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
@@ -186,7 +186,7 @@ const handleSubmit = () => {
                 <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
-                <a :href="extensionUrl" class="underline hover:text-amber-800" target="_blank">Open source</a>
+                <a :href="extensionUrl" class="underline hover:text-amber-800 dark:hover:text-amber-200" target="_blank">Open source</a>
               </li>
               <li class="flex items-center">
                 <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
